@@ -9,7 +9,7 @@ from threading import Thread
 
 
 def sm_first(x, n):
-    return ((-1) ** n) * x ** (2 * n) / math.factorial(2 * n)
+    return math.cos(n*x)*n/(4*(n**2)-1)
 
 
 def first(x, n):
@@ -20,21 +20,21 @@ def first(x, n):
 
     current = sm_first(x, n)
     n += 1
-    test = math.cos(x)
+    test = - 1/4 - ((1 / 4) * math.cos(x/2) * (math.log(math.tan(x/4))))
 
-    while math.fabs(current - previous) > eps:
+    while math.fabs(math.fabs(current) - math.fabs(previous)) > eps:
         previous = current
         current = current + sm_first(x, n)
         n += 1
-        print(n)
+        print(current)
 
-    current = round(current, 5)
-    test = round(test, 5)
-    if current == test:
-        print(f'Сумма ряда {current} = проверочному значению {test}')
+    current = round(current, 6)
+    test = round(test, 6)
+    print(f'Сумма ряда {current} ~ проверочному значению {test}')
 
 
 if __name__ == '__main__':
-    th1 = Thread(target=first(0.3, 0))
+    th1 = Thread(target=first(math.pi/6, 1))
+
 
     th1.start()

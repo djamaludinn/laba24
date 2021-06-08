@@ -25,10 +25,10 @@ def first(x, n):
         previous = current
         current = current + sm_first(x, n)
         n += 1
-        print(n)
+        # print(n)
 
-    current = round(current, 5)
-    test = round(test, 5)
+    current = round(current, 6)
+    test = round(test, 6)
     print(f'Сумма ряда {current} ~ проверочному значению {test}')
 
 
